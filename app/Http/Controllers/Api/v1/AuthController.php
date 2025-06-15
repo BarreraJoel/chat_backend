@@ -9,11 +9,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\v1\LoginRequest;
 use App\Http\Requests\Api\v1\RegisterRequest;
 use App\Http\Resources\Api\v1\UserResource;
-use App\Models\Api\v1\User;
 use App\Services\Api\v1\AuthService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
@@ -32,8 +30,6 @@ class AuthController extends Controller
 
         event(new UserLogged($user, UserStatusEnum::Online));
 
-        // UserLogged::dispatch($user, UserStatusEnum::Online);
-
         return ApiResponse::response(
             true,
             'Inicio de sesión exitoso',
@@ -46,7 +42,6 @@ class AuthController extends Controller
 
     public function user(Request $request)
     {
-        // $user = $this->authService->user();
         $user = $request->user();
 
         return ApiResponse::response(
@@ -60,8 +55,6 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         $this->authService->logout();
-        // Log::info('logout: ' . $request->user());
-        // UserLogged::dispatch($request->user(), UserStatusEnum::Offline);
         event(new UserLogged($request->user(), UserStatusEnum::Offline));
 
         return ApiResponse::response(

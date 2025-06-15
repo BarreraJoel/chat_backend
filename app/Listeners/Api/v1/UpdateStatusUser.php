@@ -10,14 +10,11 @@ use Illuminate\Support\Facades\Log;
 class UpdateStatusUser implements ShouldQueue
 {
     use InteractsWithQueue;
-    
+
     /**
      * Create the event listener.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct() {}
 
     /**
      * Handle the event.

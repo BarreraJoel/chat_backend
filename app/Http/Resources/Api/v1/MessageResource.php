@@ -5,7 +5,7 @@ namespace App\Http\Resources\Api\v1;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class MessageResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,12 +16,12 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'email' => $this->email,
-            'image_url' => $this->image_url,
+            'type' => $this->type,
+            'content' => $this->content,
             'status' => $this->status,
-            'chats' => ChatResource::collection($this->chats),
-            // 'messages' => MessageResource::collection($this->messages),
+            'chat_id' => $this->chat_id,
+            'user_id' => $this->user_id,
+            'created_at' => $this->created_at,
         ];
     }
 }

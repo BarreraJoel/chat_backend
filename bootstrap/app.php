@@ -10,7 +10,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__ . '/../routes/web.php',
         api: __DIR__ . '/../routes/api.php',
-        // apiPrefix: 'api/v1',
+        channels: __DIR__ . '/../routes/channels.php',
         commands: __DIR__ . '/../routes/console.php',
         health: '/up',
         then: function () {
@@ -23,5 +23,5 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->statefulApi();
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        $exceptions->render([ExceptionHandler::class, 'handle']);
+        // $exceptions->render([ExceptionHandler::class, 'handle']);
     })->create();

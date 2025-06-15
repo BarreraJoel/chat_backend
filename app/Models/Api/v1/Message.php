@@ -11,6 +11,7 @@ use App\Models\Api\v1\User;
 class Message extends Model
 {
     protected $fillable = [
+        'content',
         'chat_id',
         'user_id',
     ];
@@ -23,12 +24,12 @@ class Message extends Model
         ];
     }
 
-    protected function chat()
+    public function chats()
     {
         return $this->belongsTo(Chat::class);
     }
 
-    protected function user()
+    public function users()
     {
         return $this->belongsTo(User::class);
     }
